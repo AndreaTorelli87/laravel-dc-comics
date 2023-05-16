@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("series");
             $table->date("sale_date");
             $table->string("type");
-
+            
             $table->timestamps();
         });
     }
@@ -28,12 +28,3 @@ return new class extends Migration
         Schema::dropIfExists('comics');
     }
 };
-
-
-// "title" => "Action Comics #1000: The Deluxe Edition",
-// "description" => "Tories Action Comics #1 and 2 from 1938!",
-// "thumb" => "https://static.dc.com/dc/files/default_images/AC1000_DLX_162-001_HD_5ba13723281ab0.37845353.jpg?w=250",
-// "price" => "$19.99",
-// "series" => "Action Comics",
-// "sale_date" => "2018-10-02",
-// "type" => "comic book",
