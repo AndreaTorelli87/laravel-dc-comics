@@ -9,48 +9,29 @@ use Illuminate\Http\Request;
 
 class ComicsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        $data = [
+            $links = config("NavLinks.links")
+        ];  
         $comics = Comic::all();
-        dd($comics);
-        return view("index", compact("comics"));
+        return view("comics.index", compact("comics","data"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        return view("comics.show", compact("comic"));
     }
 
     /**

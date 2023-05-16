@@ -10,11 +10,11 @@
                <li class="nav-item">
                   <a class="nav-link {{Route::currentRouteName() == "home"?"border-bottom border-4 border-warning text-black":""}}" href="/">Home</a>
                </li>
-               @foreach ($data[0] as $link)
+               {{-- @foreach ($data[0] as $link)
                <li class="nav-item">
                   <a class="nav-link {{Route::currentRouteName() == $link?"border-bottom border-4 border-warning text-black":""}}" href="/{{ $link }}">{{ ucfirst($link) }}</a>
                </li>
-               @endforeach
+               @endforeach --}}
             </ul>
          </div>
       </div>

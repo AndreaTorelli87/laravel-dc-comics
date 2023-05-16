@@ -12,8 +12,7 @@
          $data = [
             $links = config("NavLinks.links")
          ];        
-         // $trains = Train::all();
-         // $trains = Train::where("Numero_Carrozze", ">", 10)->get();
+
          return view("home", compact("data"));
       }
       
