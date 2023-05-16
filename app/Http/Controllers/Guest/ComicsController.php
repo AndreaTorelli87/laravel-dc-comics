@@ -20,18 +20,39 @@ class ComicsController extends Controller
 
     public function create()
     {
-        //
+        $data = [
+            $links = config("NavLinks.links")
+        ]; 
+
+        return view("comics.create", compact("data"));
     }
 
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        
+        $newComic = new Comic();
+
+        $newComic->title = $form_data["title"];
+        $newComic->desctiption = $form_data["description"];
+        $newComic->thumb = $form_data["thumb"];
+        $newComic->price = $form_data["price"];
+        $newComic->series = $form_data["series"];
+        $newComic->sale_date = $form_data["sale_date"];
+        $newComic->type = $form_data["type"];
+        $newComic->save();
+
+        return redirect()->route('comics.show', ['comic' => $newComic->id]);
     }
 
     public function show($id)
     {
+        $data = [
+            $links = config("NavLinks.links")
+        ]; 
+
         $comic = Comic::findOrFail($id);
-        return view("comics.show", compact("comic"));
+        return view("comics.show", compact("comic","data"));
     }
 
     /**
