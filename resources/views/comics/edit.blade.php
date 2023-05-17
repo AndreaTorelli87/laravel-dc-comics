@@ -4,9 +4,10 @@
 
 @section('content')
    <h1 class="py-5 fw-bold text-danger display-1">Benvenuto in Edit</h1>
-      <form method="POST" action="{{ route('comics.store', ['comic' => $comic->id]) }}">
+      <form method="POST" action="{{ route('comics.update', ['comic' => $comic->id]) }}">
 
          @csrf
+         @method("PUT")
 
          <div class="mb-3">
             <label for="thumb" class="form-label">Url dell'immagine:</label>
