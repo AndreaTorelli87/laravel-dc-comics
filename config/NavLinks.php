@@ -1,9 +1,7 @@
 <?php
 
 return [
-   "links" => [
-      "create",
-      "index",
-      "show",
-   ]
+   "create",
+   "index",
+   "show",
 ];

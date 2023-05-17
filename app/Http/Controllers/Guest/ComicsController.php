@@ -9,22 +9,23 @@ use Illuminate\Http\Request;
 
 class ComicsController extends Controller
 {
+
+    public function home() {  
+        $NavLinks = config("NavLinks"); 
+        return view("home", compact("NavLinks"));
+    }
+
     public function index()
     {
-        $data = [
-            $links = config("NavLinks.links")
-        ];  
+        $NavLinks = config("NavLinks"); 
         $comics = Comic::all();
-        return view("comics.index", compact("comics","data"));
+        return view("comics.index", compact("comics","NavLinks"));
     }
 
     public function create()
     {
-        $data = [
-            $links = config("NavLinks.links")
-        ]; 
-
-        return view("comics.create", compact("data"));
+        $NavLinks = config("NavLinks");
+        return view("comics.create", compact("NavLinks"));
     }
 
     public function store(Request $request)
