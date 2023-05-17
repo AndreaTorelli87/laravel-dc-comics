@@ -10,7 +10,7 @@
             <div class="card">
                <img src="{{$comic->thumb}}" class="card-img-top" alt="{{$comic->title}}">
                <div class="card-body">
-                  <a class="btn btn-primary" href="{{route("comics.show", ["comic" => $comic->id])}}">Vedi</a>
+                  <a class="btn btn-success" href="{{route("comics.show", ["comic" => $comic->id])}}">Vedi</a>
                   <h5 class="card-title">{{$comic->title}}</h5>
                   <span>Price: {{$comic->price}} - Data di uscita: {{$comic->sale_date}}</span>
                   <span>Serie: {{$comic->series}} - Tipo: {{$comic->type}}</span>

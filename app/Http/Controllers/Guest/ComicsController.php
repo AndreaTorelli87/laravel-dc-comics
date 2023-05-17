@@ -11,21 +11,18 @@ class ComicsController extends Controller
 {
 
     public function home() {  
-        $NavLinks = config("NavLinks"); 
-        return view("home", compact("NavLinks"));
+        return view("home");
     }
 
     public function index()
     {
-        $NavLinks = config("NavLinks"); 
         $comics = Comic::all();
-        return view("comics.index", compact("comics","NavLinks"));
+        return view("comics.index", compact("comics"));
     }
 
     public function create()
     {
-        $NavLinks = config("NavLinks");
-        return view("comics.create", compact("NavLinks"));
+        return view("comics.create");
     }
 
     public function store(Request $request)
@@ -35,7 +32,7 @@ class ComicsController extends Controller
         $newComic = new Comic();
 
         $newComic->title = $form_data["title"];
-        $newComic->desctiption = $form_data["description"];
+        $newComic->desctiption = $form_data["desctiption"];
         $newComic->thumb = $form_data["thumb"];
         $newComic->price = $form_data["price"];
         $newComic->series = $form_data["series"];
@@ -46,25 +43,15 @@ class ComicsController extends Controller
         return redirect()->route('comics.show', ['comic' => $newComic->id]);
     }
 
-    public function show($id)
+    public function show(Comic $comic)
     {
-        $data = [
-            $links = config("NavLinks.links")
-        ]; 
-
-        $comic = Comic::findOrFail($id);
-        return view("comics.show", compact("comic","data"));
+        // $comic = Comic::findOrFail($id);
+        return view("comics.show", compact("comic"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view("comics.edit", compact("comic"));
     }
 
     /**

@@ -16,11 +16,6 @@
                <li class="nav-item">
                   <a class="nav-link" href="/comics/create">Create</a>
                </li>
-               {{-- @foreach ($NavLinks as $link)
-               <li class="nav-item">
-                  <a class="nav-link {{Route::currentRouteName() == $link?"border-bottom border-4 border-warning text-black":""}}" href="comics/{{ $link }}">{{ ucfirst($link) }}</a>
-               </li>
-               @endforeach --}}
             </ul>
          </div>
       </div>
