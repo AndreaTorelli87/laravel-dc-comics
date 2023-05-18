@@ -9,9 +9,9 @@
       </head>
       <body>
          @include("partials.header")
+         @include("partials.error")
          <div class="container mt-5">
             @yield("content")
-   
          </div>
       </body>
    </html>
