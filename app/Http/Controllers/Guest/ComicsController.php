@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
 
 class ComicsController extends Controller
 {
-
     public function home() {  
         return view("home");
     }
@@ -25,32 +26,14 @@ class ComicsController extends Controller
         return view("comics.create");
     }
 
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->validate([
-            'thumb' => 'required|url|max:255',
-            'title' => 'required|max:50',
-            'price' => 'required|max:10',
-            'series' => 'required|max:70',
-            'sale_date' => 'required|max:10',
-            'description' => 'required|max:65535',
-            'type' => 'required|max:50'
-        ]);
-
-        $form_data = $request->all();
-        
+        $form_data = $request->validated();
         $newComic = new Comic();
-
-        $newComic->title = $form_data["title"];
-        $newComic->desctiption = $form_data["desctiption"];
-        $newComic->thumb = $form_data["thumb"];
-        $newComic->price = $form_data["price"];
-        $newComic->series = $form_data["series"];
-        $newComic->sale_date = $form_data["sale_date"];
-        $newComic->type = $form_data["type"];
+        $newComic->fill($form_data);
         $newComic->save();
-
-        return redirect()->route('comics.show', ['comic' => $newComic->id]);
+        
+        return redirect()->route("comics.show", ["comic" => $newComic->id])->with("status", "Il nuovo comic è stato aggiunto con successo!");
     }
 
     public function show(Comic $comic)
@@ -64,21 +47,11 @@ class ComicsController extends Controller
         return view("comics.edit", compact("comic"));
     }
 
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $request->validate([
-            'thumb' => 'required|url|max:255',
-            'title' => 'required|max:50',
-            'price' => 'required|max:10',
-            'series' => 'required|max:70',
-            'sale_date' => 'required|max:10',
-            'description' => 'required|max:65535',
-            'type' => 'required|max:50'
-        ]);
-
         $form_data = $request->all();
         $comic->update($form_data);
-        return redirect()->route('comics.show', ['comic' => $comic->id]);
+        return redirect()->route('comics.show', ['comic' => $comic->id])->with("status", "Il comic è stato aggiornato con successo!");
     }
 
     public function destroy(Comic $comic)
